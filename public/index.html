@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviator Crash Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    #crash { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Aviator Crash Game</h1>
+  <div>
+    Current Multiplier: <span id="multiplier">1.00</span>x
+    <div id="crash" style="display:none;">CRASHED!</div>
+  </div>
+  <button id="cashout">Cash Out</button>
+  <div id="result"></div>
+  <script>
+    let crashed = false;
+    setInterval(async () => {
+      const res = await fetch('/api/state');
+      const data = await res.json();
+      document.getElementById('multiplier').textContent = data.multiplier.toFixed(2);
+      crashed = data.crashed;
+      document.getElementById('crash').style.display = crashed ? 'block' : 'none';
+    }, 300);
+
+    document.getElementById('cashout').onclick = async () => {
+      if (crashed) {
+        document.getElementById('result').textContent = 'Too late! Game crashed.';
+        return;
+      }
+      const res = await fetch('/api/cashout', { method: 'POST' });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('result').textContent = 'You cashed out at ' + data.multiplier.toFixed(2) + 'x!';
+      } else {
+        document.getElementById('result').textContent = data.message;
+      }
+    };
+  </script>
+</body>
+</html>
