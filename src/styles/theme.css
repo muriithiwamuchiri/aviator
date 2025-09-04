@@ -1,0 +1,66 @@
+.app-green {
+  background: #1b2b1b;
+  min-height: 100vh;
+  color: #9afc7b;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+the.game-green {
+  max-width: 500px;
+  margin: auto;
+  background: #254a25;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 24px #1b2b1b;
+}
+
+.crash-display {
+  font-size: 2em;
+  color: #9afc7b;
+  margin-bottom: 10px;
+}
+
+.crashed {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.bet-controls-green {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.green-btn {
+  background: #37c837;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.green-btn:disabled {
+  background: #a4d8a4;
+  cursor: not-allowed;
+}
+
+.leaderboard-green {
+  background: #1b2b1b;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .game-green {
+    max-width: 98vw;
+    padding: 8px;
+  }
+  .crash-display {
+    font-size: 1.3em;
+  }
+}
